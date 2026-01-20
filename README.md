@@ -1,5 +1,5 @@
 # wordlewin
-Got bored so slapped together some python for Wordle solver.
+Got bored so slapped together some python for Wordle solver. It'll also pull a definition of the word of the day too along with synonyms.
 
 ## Usage
 ```
