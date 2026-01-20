@@ -19,3 +19,4 @@ Full response: {
   "editor": "Tracy Bennett"
 }
 ```
+<img width="481" height="515" alt="image" src="https://github.com/user-attachments/assets/73175d55-7ae1-46c6-a83b-33ab1d8be3c3" />
