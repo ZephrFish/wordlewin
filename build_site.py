@@ -21,8 +21,19 @@ TEMPLATE = """<!DOCTYPE html>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Wordle word for {date}</title>
+<script>
+  (function () {{
+    const t = localStorage.getItem('theme');
+    if (t) document.documentElement.dataset.theme = t;
+  }})();
+</script>
 <style>
   :root {{ color-scheme: light dark; --green: #6aaa64; }}
+  :root[data-theme="light"] {{ color-scheme: light; }}
+  :root[data-theme="dark"] {{ color-scheme: dark; }}
+  body {{ background: Canvas; color: CanvasText; }}
+  #theme {{ position: fixed; top: 1rem; right: 1rem; font-size: 1.2rem; line-height: 1; padding: .4rem .55rem;
+           border: 1px solid #8886; border-radius: 6px; background: Canvas; color: CanvasText; cursor: pointer; }}
   body {{ font-family: system-ui, sans-serif; max-width: 42rem; margin: 3rem auto; padding: 0 1rem; line-height: 1.5; }}
   h1 {{ font-size: 1.1rem; font-weight: 600; opacity: .7; }}
   h2 {{ margin-top: 3rem; font-size: 1.2rem; }}
@@ -47,6 +58,7 @@ TEMPLATE = """<!DOCTYPE html>
 </style>
 </head>
 <body>
+<button id="theme" type="button" aria-label="Toggle light/dark mode"></button>
 <h1>Wordle #{number} &middot; {date}</h1>
 <main id="root">
   <div class="tiles hidden" id="tiles" title="Click to reveal">{tiles}</div>
@@ -70,6 +82,22 @@ TEMPLATE = """<!DOCTYPE html>
 <footer>Updated automatically on {date} &middot; <a href="https://github.com/ZephrFish/wordlewin">wordlewin</a>
 &middot; <a href="words.json">words.json</a> &middot; click a past word for its definition</footer>
 <script>
+  const themeBtn = document.getElementById('theme');
+  const isDark = () => (document.documentElement.dataset.theme ||
+    (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')) === 'dark';
+  const syncIcon = () => {{
+    themeBtn.textContent = isDark() ? '☀️' : '🌙';
+    themeBtn.title = isDark() ? 'Switch to light mode' : 'Switch to dark mode';
+  }};
+  themeBtn.addEventListener('click', () => {{
+    const next = isDark() ? 'light' : 'dark';
+    document.documentElement.dataset.theme = next;
+    localStorage.setItem('theme', next);
+    syncIcon();
+  }});
+  matchMedia('(prefers-color-scheme: dark)').addEventListener('change', syncIcon);
+  syncIcon();
+
   document.getElementById('tiles').addEventListener('click', function () {{
     this.classList.remove('hidden');
     document.getElementById('root').classList.add('revealed');
