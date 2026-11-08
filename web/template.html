@@ -29,24 +29,31 @@
 <body data-today="{{DATE}}">
 <button id="theme" class="icon-btn" type="button" aria-label="Toggle light/dark mode"></button>
 
-<h1>Wordle #{{NUMBER}} &middot; {{DATE}}</h1>
+<h1 id="today-title">Wordle #{{NUMBER}} &middot; {{DATE}}</h1>
 <main id="root">
   <div class="tiles hidden" id="tiles" role="button" tabindex="0" title="Click to reveal">{{TILES}}</div>
   <p class="hint" id="hint">Spoiler. Click the tiles to reveal.</p>
+  <div class="today-meta">
+    <span id="countdown" class="hint"></span>
+    <button type="button" id="share-today" class="small-btn">Share site</button>
+  </div>
   <div class="details">
-    <p>Edited by {{EDITOR}}</p>
-    {{DEFINITION}}
+    <p id="editor">Edited by {{EDITOR}}</p>
+    <pre id="definition">{{DEFINITION}}</pre>
   </div>
 </main>
 
 <details id="stats">
-  <summary>Stats across {{PAST_COUNT}} past answers</summary>
+  <summary>Stats across {{STATS_COUNT}} past answers</summary>
   {{STATS}}
 </details>
 
 <h2 id="archive-title">Previous words</h2>
 <div class="toolbar">
-  <input id="search" type="search" placeholder="Search by word, date or number&hellip;" autocomplete="off">
+  <div class="search-row">
+    <input id="search" type="search" placeholder="Search by word, date or number&hellip;" autocomplete="off">
+    <input id="jump" type="date" min="{{LAUNCH}}" aria-label="Jump to date" title="Jump to date">
+  </div>
   <div class="toolbar-row">
     <label class="switch"><input type="checkbox" id="blur"> Hide past answers</label>
     <button id="random" type="button">Practise a random word</button>
@@ -69,15 +76,20 @@
     <button type="submit">Check</button>
   </form>
   <p id="p-msg" aria-live="polite"></p>
+  <pre id="p-def"></pre>
   <div class="p-actions">
     <button type="button" id="p-hint">Hint</button>
     <button type="button" id="p-reveal">Reveal</button>
     <button type="button" id="p-next">Another</button>
   </div>
+  <p id="p-score" class="note"></p>
 </dialog>
 
 <footer>Updated automatically on {{DATE}} &middot; <a href="https://github.com/ZephrFish/wordlewin">wordlewin</a>
-&middot; <a href="words.json">words.json</a> &middot; click a past word for its definition, or a date for a shareable link</footer>
+&middot; <a href="words.json">words.json</a> &middot; click a past word for its definition, or a date for a shareable link
+<br>Shortcuts: <kbd>/</kbd> search &middot; <kbd>Space</kbd> reveal/hide &middot; <kbd>D</kbd> jump to date &middot; <kbd>R</kbd> practise &middot; <kbd>T</kbd> theme</footer>
+<div id="toast" role="status" aria-live="polite"></div>
+<script id="days" type="application/json">{{DAYS_JSON}}</script>
 <script src="app.js?v={{VERSION}}"></script>
 </body>
 </html>

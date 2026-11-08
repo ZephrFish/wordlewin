@@ -83,6 +83,7 @@ def build_stats(past):
     vowels = sum(sum(c in "aeiou" for c in s) for s in sols) / total
     top_letter, top_letter_n = contains.most_common(1)[0]
     top_first, top_first_n = first.most_common(1)[0]
+    reused = sum(1 for n in Counter(sols).values() if n > 1)
 
     tiles = [
         (f"{total:,}", "past answers"),
@@ -90,6 +91,7 @@ def build_stats(past):
         (top_letter.upper(), f"most common letter, in {pct(top_letter_n, total)} of answers"),
         (top_first.upper(), f"most common first letter ({top_first_n})"),
         (f"{vowels:.1f}", "vowels per answer, on average"),
+        (str(reused), "words used as the answer more than once"),
     ]
     tiles_html = '<div class="stat-tiles">' + "".join(
         f'<div class="stat"><b>{v}</b><span>{html.escape(l)}</span></div>' for v, l in tiles
@@ -113,7 +115,8 @@ def build_stats(past):
         + f'<div><p class="chart-title">Top first letters</p>{hbars(first, total)}</div>'
         + f'<div><p class="chart-title">Top last letters</p>{hbars(last, total)}</div>'
         + "</div>"
-        + '<p class="note">Today\'s answer is left out of every stat. Hover or tap a column for its value.</p>'
+        + f'<p class="note">Covers answers up to {past[-1]["date"]}, so today\'s word (in any time zone) is never included. '
+        'Hover or tap a column for its value.</p>'
     )
 
 
@@ -123,22 +126,48 @@ def render(template, **values):
     return template
 
 
+def candidate_days(words, target):
+    """Yesterday/today/tomorrow (UTC) so the page can show the visitor's local-date word."""
+    by_date = {w["date"]: w for w in words}
+    out = []
+    for offset in (-1, 0, 1):
+        day = target + timedelta(days=offset)
+        entry = by_date.get(day.isoformat())
+        if entry is None:
+            try:
+                entry = fetch_entry(day)
+            except Exception as exc:  # tomorrow may not be published yet
+                print(f"Skipping {day}: {exc}")
+                continue
+        out.append({**entry, "definition": get_definition(entry["solution"])})
+    return out
+
+
 def main():
     target_date = sys.argv[1] if len(sys.argv) > 1 else datetime.now(timezone.utc).date().isoformat()
     target = date.fromisoformat(target_date)
     words = update_archive(target)
 
     today = next(w for w in words if w["date"] == target_date)
-    past = [w for w in reversed(words) if w["date"] < target_date]
-    definition = get_definition(today["solution"])
+    days = candidate_days(words, target)
+    definition = next(d["definition"] for d in days if d["date"] == target_date)
 
+    # Rows up to the build date; the browser hides any row on/after the visitor's local "today".
+    archive = [w for w in reversed(words) if w["date"] <= target_date]
+    # Stats skip the last two UTC days, which could be "today" somewhere in the world.
+    stats_cutoff = (target - timedelta(days=1)).isoformat()
+    stats_words = [w for w in words if w["date"] < stats_cutoff]
+
+    future = ' class="future"'
     rows = "".join(
-        f'<tr id="d-{w["date"]}" data-d="{w["date"]}" data-n="{w["number"]}" '
+        f'<tr id="d-{w["date"]}"{future if w["date"] >= target_date else ""} '
+        f'data-d="{w["date"]}" data-n="{w["number"]}" '
         f'data-w="{html.escape(w["solution"].lower())}" data-k="{w["number"]} {w["date"]}">'
         f'<td>{w["number"]}</td><td><a href="#{w["date"]}">{w["date"]}</a></td>'
         f'<td class="word">{html.escape(w["solution"].upper())}</td></tr>'
-        for w in past
+        for w in archive
     )
+    days_json = json.dumps(days, separators=(",", ":")).replace("</", "<\\/")
 
     page = render(
         (WEB / "template.html").read_text(),
@@ -148,9 +177,11 @@ def main():
         NUMBER=today["number"],
         EDITOR=html.escape(today.get("editor") or "unknown"),
         TILES="".join(f'<div class="tile">{html.escape(c)}</div>' for c in today["solution"]),
-        DEFINITION=f"<pre>{html.escape(definition)}</pre>" if definition else "<p>No definition found.</p>",
-        PAST_COUNT=f"{len(past):,}",
-        STATS=build_stats(past),
+        DEFINITION=html.escape(definition or "No definition found."),
+        DAYS_JSON=days_json,
+        LAUNCH=LAUNCH.isoformat(),
+        STATS_COUNT=f"{len(stats_words):,}",
+        STATS=build_stats(stats_words),
         ROWS=rows,
     )
 
@@ -166,7 +197,7 @@ def main():
     # Bump the service-worker cache name each build so clients pick up the new day.
     sw = OUT_DIR / "sw.js"
     sw.write_text(sw.read_text().replace("wordlewin-v1", f"wordlewin-{target_date}"))
-    print(f"Site built for {target_date} with {len(past)} past words -> {OUT_DIR / 'index.html'}")
+    print(f"Site built for {target_date}: {len(archive)} archive rows, days {[d['date'] for d in days]}")
 
 
 if __name__ == "__main__":
