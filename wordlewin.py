@@ -6,14 +6,27 @@ import json
 import urllib.request
 from datetime import date
 
+HEADERS = {
+    "User-Agent": (
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+        "(KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36 wordlewin/1.0"
+    )
+}
+
+
+def fetch_json(url):
+    """GET a URL and decode the JSON body."""
+    req = urllib.request.Request(url, headers=HEADERS)
+    with urllib.request.urlopen(req, timeout=15) as response:
+        return json.loads(response.read().decode())
+
 
 def get_definition(word):
     """Fetch and return formatted definitions of a word from the free dictionary API."""
     url = f"https://api.dictionaryapi.dev/api/v2/entries/en/{word}"
 
     try:
-        with urllib.request.urlopen(url) as response:
-            data = json.loads(response.read().decode())
+        data = fetch_json(url)
 
         if not data or len(data) == 0:
             return None
@@ -51,7 +64,7 @@ def get_definition(word):
 
         return "\n".join(lines) if lines else None
 
-    except urllib.error.HTTPError:
+    except (urllib.error.URLError, ValueError):
         return None
 
 
@@ -59,8 +72,7 @@ def get_wordle_word(target_date):
     """Fetch and return the Wordle word for a given date."""
     url = f"https://www.nytimes.com/svc/wordle/v2/{target_date}.json"
 
-    with urllib.request.urlopen(url) as response:
-        data = json.loads(response.read().decode())
+    data = fetch_json(url)
 
     return data.get("solution"), target_date, data
 
