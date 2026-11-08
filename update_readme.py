@@ -34,13 +34,19 @@ def main():
     section = build_section(target_date)
     text = README.read_text()
 
-    if START in text and END in text:
-        pattern = re.compile(re.escape(START) + r".*?" + re.escape(END), re.DOTALL)
-        text = pattern.sub(lambda _: section, text)
-    else:
-        text = text.rstrip() + "\n\n" + section + "\n"
+    # Drop any existing section, wherever it sits, then insert at the top.
+    pattern = re.compile(r"\n*" + re.escape(START) + r".*?" + re.escape(END) + r"\n*", re.DOTALL)
+    text = pattern.sub("\n\n", text).strip("\n")
 
-    README.write_text(text)
+    # Place the section directly under the H1 title (or at the very top if there isn't one).
+    lines = text.split("\n")
+    if lines and lines[0].startswith("# "):
+        title, rest = lines[0], "\n".join(lines[1:]).lstrip("\n")
+        text = f"{title}\n\n{section}\n\n{rest}"
+    else:
+        text = f"{section}\n\n{text}"
+
+    README.write_text(text.rstrip("\n") + "\n")
     print(f"README updated for {target_date}")
 
 
