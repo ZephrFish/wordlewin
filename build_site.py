@@ -55,6 +55,20 @@ TEMPLATE = """<!DOCTYPE html>
   tr.def td {{ font-size: .75rem; white-space: pre-wrap; }}
   #count {{ font-size: .85rem; opacity: .6; }}
   footer {{ margin-top: 3rem; font-size: .8rem; opacity: .6; }}
+  * {{ -webkit-tap-highlight-color: transparent; }}
+  html {{ -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }}
+  @media (max-width: 600px) {{
+    body {{ margin: 1rem auto 2rem; padding: 0 .75rem; }}
+    h1 {{ padding-right: 3rem; font-size: 1rem; }}
+    #theme {{ position: absolute; top: .6rem; right: .6rem; }}
+    .tiles {{ gap: 1.5vw; margin: 1rem 0; }}
+    .tile {{ width: min(16vw, 3.2rem); height: min(16vw, 3.2rem); font-size: min(9vw, 1.8rem); }}
+    h2 {{ margin-top: 2rem; }}
+    input {{ font-size: 16px; }}
+    .scroll {{ max-height: 60vh; -webkit-overflow-scrolling: touch; }}
+    td, th {{ padding: .45rem .5rem; }}
+    pre {{ font-size: .8rem; }}
+  }}
 </style>
 </head>
 <body>
