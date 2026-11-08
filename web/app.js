@@ -24,10 +24,10 @@
   /* ---------- Today's reveal ---------- */
   const tiles = $('tiles');
   const reveal = () => {
-    if (!tiles.classList.contains('hidden')) return;
-    tiles.classList.remove('hidden');
-    $('root').classList.add('revealed');
-    $('hint').remove();
+    const show = tiles.classList.toggle('hidden') === false;
+    $('root').classList.toggle('revealed', show);
+    tiles.title = show ? 'Click to hide' : 'Click to reveal';
+    $('hint').textContent = show ? 'Click the tiles to hide it again.' : 'Spoiler. Click the tiles to reveal.';
   };
   tiles.addEventListener('click', reveal);
   tiles.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); reveal(); } });

@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Build a static GitHub Pages site: today's Wordle word, stats, and an archive of past words."""
 
+import hashlib
 import html
 import json
 import shutil
@@ -142,7 +143,7 @@ def main():
     page = render(
         (WEB / "template.html").read_text(),
         SITE_URL=SITE_URL,
-        VERSION=target_date,
+        VERSION=hashlib.sha256((WEB / "app.js").read_bytes() + (WEB / "style.css").read_bytes()).hexdigest()[:10],
         DATE=html.escape(target_date),
         NUMBER=today["number"],
         EDITOR=html.escape(today.get("editor") or "unknown"),
