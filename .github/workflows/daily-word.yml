@@ -11,9 +11,15 @@ on:
 
 permissions:
   contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
 
 jobs:
-  update-readme:
+  update:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -27,6 +33,11 @@ jobs:
           TARGET_DATE: ${{ github.event.inputs.date }}
         run: python3 update_readme.py $TARGET_DATE
 
+      - name: Build Pages site
+        env:
+          TARGET_DATE: ${{ github.event.inputs.date }}
+        run: python3 build_site.py $TARGET_DATE
+
       - name: Commit and push
         run: |
           git config user.name "github-actions[bot]"
@@ -38,3 +49,17 @@ jobs:
             git commit -m "Daily Wordle word: $(date -u +%F)"
             git push
           fi
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+  deploy:
+    needs: update
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
