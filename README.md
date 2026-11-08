@@ -29,6 +29,8 @@ _Last updated automatically on 2026-11-08._
 
 Got bored so slapped together some python for [Wordle](https://www.nytimes.com/games/wordle/index.html) solver. It'll also pull a definition of the word of the day too along with synonyms.
 
+**Live site:** https://zephrfish.github.io/wordlewin/ (today's word hidden until you reveal it, definitions, stats, and every past answer). Updated daily by GitHub Actions.
+
 ## Usage
 ```
 python3 wordlewin.py 2026-01-20

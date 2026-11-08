@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Wordle word of the day &amp; archive</title>
+<meta name="description" content="Today's Wordle answer (hidden until you reveal it), its definition, and every past answer since 2021.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Wordle word of the day &amp; archive">
+<meta property="og:description" content="Today's answer hidden until you reveal it, plus definitions, stats and every past word since 2021.">
+<meta property="og:url" content="{{SITE_URL}}">
+<meta property="og:image" content="{{SITE_URL}}icon-512.png">
+<meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#121212" media="(prefers-color-scheme: dark)">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon-180.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Wordlewin">
+<script>
+  (function () {
+    var t = localStorage.getItem('theme');
+    if (t) document.documentElement.dataset.theme = t;
+  })();
+</script>
+<link rel="stylesheet" href="style.css?v={{VERSION}}">
+</head>
+<body data-today="{{DATE}}">
+<button id="theme" class="icon-btn" type="button" aria-label="Toggle light/dark mode"></button>
+
+<h1>Wordle #{{NUMBER}} &middot; {{DATE}}</h1>
+<main id="root">
+  <div class="tiles hidden" id="tiles" role="button" tabindex="0" title="Click to reveal">{{TILES}}</div>
+  <p class="hint" id="hint">Spoiler. Click the tiles to reveal.</p>
+  <div class="details">
+    <p>Edited by {{EDITOR}}</p>
+    {{DEFINITION}}
+  </div>
+</main>
+
+<details id="stats">
+  <summary>Stats across {{PAST_COUNT}} past answers</summary>
+  {{STATS}}
+</details>
+
+<h2 id="archive-title">Previous words</h2>
+<div class="toolbar">
+  <input id="search" type="search" placeholder="Search by word, date or number&hellip;" autocomplete="off">
+  <div class="toolbar-row">
+    <label class="switch"><input type="checkbox" id="blur"> Hide past answers</label>
+    <button id="random" type="button">Practise a random word</button>
+  </div>
+</div>
+<p id="count"></p>
+<div class="scroll" id="scroller">
+<table>
+  <thead><tr><th>#</th><th>Date</th><th>Word</th></tr></thead>
+  <tbody id="archive">{{ROWS}}</tbody>
+</table>
+</div>
+
+<dialog id="practice">
+  <form method="dialog" class="close-row"><button class="icon-btn" aria-label="Close">&times;</button></form>
+  <h3 id="p-title"></h3>
+  <div class="tiles small" id="p-tiles"></div>
+  <form id="p-form" autocomplete="off">
+    <input id="p-guess" maxlength="5" placeholder="Your guess" autocapitalize="characters" spellcheck="false">
+    <button type="submit">Check</button>
+  </form>
+  <p id="p-msg" aria-live="polite"></p>
+  <div class="p-actions">
+    <button type="button" id="p-hint">Hint</button>
+    <button type="button" id="p-reveal">Reveal</button>
+    <button type="button" id="p-next">Another</button>
+  </div>
+</dialog>
+
+<footer>Updated automatically on {{DATE}} &middot; <a href="https://github.com/ZephrFish/wordlewin">wordlewin</a>
+&middot; <a href="words.json">words.json</a> &middot; click a past word for its definition, or a date for a shareable link</footer>
+<script src="app.js?v={{VERSION}}"></script>
+</body>
+</html>
