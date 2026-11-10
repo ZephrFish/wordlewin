@@ -1,16 +1,17 @@
 # wordlewin
 
 <!-- WORDLE:START -->
-## Today's Word (2026-11-09)
+## Today's Word (2026-11-10)
 
-**LOAMY** (Wordle #1969, edited by Tracy Bennett)
+**TRUCE** (Wordle #1970, edited by Tracy Bennett)
 
 ```
-  adjective
-    • Consisting of loam; partaking of the nature of loam; resembling loam.
+  noun
+    • A period of time in which no fighting takes place due to an agreement between the opposed parties
+    • An agreement between opposed parties in which they pledge to cease fighting for a limited time
 ```
 
-_Last updated automatically on 2026-11-09._
+_Last updated automatically on 2026-11-10._
 <!-- WORDLE:END -->
 
 Got bored so slapped together some python for [Wordle](https://www.nytimes.com/games/wordle/index.html) solver. It'll also pull a definition of the word of the day too along with synonyms.
