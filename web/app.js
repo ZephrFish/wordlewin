@@ -1,3 +1,11 @@
+/**
+ * Client-side behaviour for the Wordlewin Pages site: today's and tomorrow's word
+ * (independent spoiler reveals), the local-midnight countdown, the searchable
+ * archive with repeat markers and jump-to-date, permalinks, practice mode, and
+ * the theme toggle. `days` (yesterday/today/tomorrow/day-after-tomorrow, UTC) is
+ * injected by build_site.py so the page can resolve the visitor's own local date
+ * without a server round-trip.
+ */
 (function () {
   'use strict';
   const $ = id => document.getElementById(id);
@@ -8,6 +16,7 @@
   // Yesterday/today/tomorrow (UTC) from the build; we show whichever matches the visitor's local date.
   const days = JSON.parse($('days').textContent);
   let today = null;
+  let tomorrow = null;
 
   /* ---------- Toast + share ---------- */
   let toastTimer;
@@ -81,6 +90,45 @@
     return true;
   }
 
+  /* ---------- Tomorrow's word (independent spoiler state from today's) ---------- */
+  const tomorrowBlock = $('tomorrow-block');
+  const tilesTomorrow = $('tiles-tomorrow');
+  function setRevealedTomorrow(show) {
+    tilesTomorrow.classList.toggle('hidden', !show);
+    tomorrowBlock.classList.toggle('revealed', show);
+    tilesTomorrow.title = show ? 'Click to hide' : 'Click to reveal';
+    $('hint-tomorrow').textContent = show ? 'Click the tiles to hide it again.' : 'Spoiler. Click the tiles to reveal.';
+  }
+  const toggleRevealTomorrow = () => setRevealedTomorrow(tilesTomorrow.classList.contains('hidden'));
+  tilesTomorrow.addEventListener('click', toggleRevealTomorrow);
+  tilesTomorrow.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleRevealTomorrow(); } });
+
+  function pickTomorrow(base) {
+    const dt = new Date(base.date + 'T00:00:00');
+    dt.setDate(dt.getDate() + 1);
+    const key = localDate(dt);
+    return days.find(d => d.date === key) || null;
+  }
+  function renderTomorrow() {
+    const pick = pickTomorrow(today);
+    if (!pick) { tomorrowBlock.hidden = true; return false; }
+    tomorrowBlock.hidden = false;
+    if (tomorrow && tomorrow.date === pick.date) return false;
+    tomorrow = pick;
+    $('tomorrow-sub').textContent = 'Wordle #' + pick.number + ' · ' + pick.date;
+    tilesTomorrow.replaceChildren();
+    for (const c of pick.solution.toUpperCase()) {
+      const t = document.createElement('div');
+      t.className = 'tile';
+      t.textContent = c;
+      tilesTomorrow.appendChild(t);
+    }
+    $('editor-tomorrow').textContent = 'Edited by ' + (pick.editor || 'unknown');
+    $('definition-tomorrow').textContent = pick.definition || 'No definition found.';
+    setRevealedTomorrow(false);
+    return true;
+  }
+
   /* ---------- Countdown to local midnight ---------- */
   function tickCountdown() {
     const now = new Date();
@@ -91,6 +139,7 @@
       ? 'Today’s word isn’t published here yet. Check back shortly.'
       : 'Next word in ' + Math.floor(s / 3600) + 'h ' + pad(Math.floor(s / 60) % 60) + 'm ' + pad(s % 60) + 's';
     if (renderToday()) applyCutoff();
+    renderTomorrow();
   }
 
   /* ---------- Definitions ---------- */
@@ -301,7 +350,7 @@
   /* ---------- Keyboard shortcuts ---------- */
   document.addEventListener('keydown', e => {
     if (e.metaKey || e.ctrlKey || e.altKey) return;
-    if (e.target.closest('input, textarea, select, button, [contenteditable], #tiles') || dlg.open) return;
+    if (e.target.closest('input, textarea, select, button, [contenteditable], #tiles, #tiles-tomorrow') || dlg.open) return;
     switch (e.key) {
       case '/': e.preventDefault(); search.focus(); search.select(); break;
       case ' ': e.preventDefault(); toggleReveal(); break;
@@ -317,6 +366,7 @@
 
   /* ---------- Start ---------- */
   renderToday();
+  renderTomorrow();
   applyCutoff();
   openFromHash();
   tickCountdown();
