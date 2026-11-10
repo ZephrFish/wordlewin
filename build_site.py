@@ -127,10 +127,11 @@ def render(template, **values):
 
 
 def candidate_days(words, target):
-    """Yesterday/today/tomorrow (UTC) so the page can show the visitor's local-date word."""
+    """Yesterday through day-after-tomorrow (UTC), so the page can show the visitor's
+    local-date word plus the word for the day after it, even near the UTC date boundary."""
     by_date = {w["date"]: w for w in words}
     out = []
-    for offset in (-1, 0, 1):
+    for offset in (-1, 0, 1, 2):
         day = target + timedelta(days=offset)
         entry = by_date.get(day.isoformat())
         if entry is None:
@@ -143,6 +144,39 @@ def candidate_days(words, target):
     return out
 
 
+def tomorrow_date_of(target):
+    """ISO date string for the day after target."""
+    return (target + timedelta(days=1)).isoformat()
+
+
+def pick_day(days, date_str):
+    """Return the candidate-days entry matching date_str, or None if it wasn't fetched."""
+    return next((d for d in days if d["date"] == date_str), None)
+
+
+# @decision DEC-TOMORROW-001
+# @title Show tomorrow's word alongside today's, with its own spoiler section
+# @status accepted
+# @rationale NYT's word list is precomputed, so get_wordle_word reliably returns valid
+#   future answers (confirmed up to +5 days ahead). candidate_days' fetch window was
+#   extended from (-1, 0, 1) to (-1, 0, 1, 2) so a visitor whose local "today" already
+#   resolves to the build's "tomorrow" entry (near the UTC day boundary) still has a
+#   real "tomorrow" available. tomorrow_date_of/pick_day/tomorrow_template_values are
+#   pulled out as pure functions, independent of update_archive's filesystem/network
+#   side effects, so the tomorrow-selection and template-fallback logic is unit
+#   testable without mocking the whole build pipeline.
+def tomorrow_template_values(tomorrow, tomorrow_date):
+    """Map a (possibly missing) tomorrow candidate-day entry to TOMORROW_* template values."""
+    return {
+        "TOMORROW_NUMBER": tomorrow["number"] if tomorrow else "?",
+        "TOMORROW_DATE": html.escape(tomorrow_date),
+        "TOMORROW_TILES": "".join(f'<div class="tile">{html.escape(c)}</div>' for c in tomorrow["solution"])
+        if tomorrow else "",
+        "TOMORROW_DEFINITION": html.escape((tomorrow["definition"] if tomorrow else None) or "Not available yet."),
+        "TOMORROW_EDITOR": html.escape((tomorrow.get("editor") if tomorrow else None) or "unknown"),
+    }
+
+
 def main():
     target_date = sys.argv[1] if len(sys.argv) > 1 else datetime.now(timezone.utc).date().isoformat()
     target = date.fromisoformat(target_date)
@@ -151,6 +185,8 @@ def main():
     today = next(w for w in words if w["date"] == target_date)
     days = candidate_days(words, target)
     definition = next(d["definition"] for d in days if d["date"] == target_date)
+    tomorrow_date = tomorrow_date_of(target)
+    tomorrow = pick_day(days, tomorrow_date)
 
     # Rows up to the build date; the browser hides any row on/after the visitor's local "today".
     archive = [w for w in reversed(words) if w["date"] <= target_date]
@@ -179,6 +215,7 @@ def main():
         TILES="".join(f'<div class="tile">{html.escape(c)}</div>' for c in today["solution"]),
         DEFINITION=html.escape(definition or "No definition found."),
         DAYS_JSON=days_json,
+        **tomorrow_template_values(tomorrow, tomorrow_date),
         LAUNCH=LAUNCH.isoformat(),
         STATS_COUNT=f"{len(stats_words):,}",
         STATS=build_stats(stats_words),

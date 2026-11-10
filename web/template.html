@@ -43,6 +43,19 @@
   </div>
 </main>
 
+<section id="tomorrow-block">
+  <h2 id="tomorrow-title">Tomorrow's Wordle</h2>
+  <div class="tiles hidden" id="tiles-tomorrow" role="button" tabindex="0" title="Click to reveal">{{TOMORROW_TILES}}</div>
+  <p class="hint" id="hint-tomorrow">Spoiler. Click the tiles to reveal.</p>
+  <div class="today-meta">
+    <span id="tomorrow-sub" class="hint">Wordle #{{TOMORROW_NUMBER}} &middot; {{TOMORROW_DATE}}</span>
+  </div>
+  <div class="details">
+    <p id="editor-tomorrow">Edited by {{TOMORROW_EDITOR}}</p>
+    <pre id="definition-tomorrow">{{TOMORROW_DEFINITION}}</pre>
+  </div>
+</section>
+
 <details id="stats">
   <summary>Stats across {{STATS_COUNT}} past answers</summary>
   {{STATS}}
