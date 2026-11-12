@@ -1,18 +1,16 @@
 # wordlewin
 
 <!-- WORDLE:START -->
-## Today's Word (2026-11-11)
+## Today's Word (2026-11-12)
 
-**BLESS** (Wordle #1971, edited by Tracy Bennett)
+**KARAT** (Wordle #1972, edited by Tracy Bennett)
 
 ```
-  verb
-    • To make something holy by religious rite, sanctify.
-    • To make the sign of the cross upon, so as to sanctify.
-    • To invoke divine favor upon.
+  noun
+    • A unit of fineness or concentration of gold equalling 1/24 part of gold in an alloy.
 ```
 
-_Last updated automatically on 2026-11-11._
+_Last updated automatically on 2026-11-12._
 <!-- WORDLE:END -->
 
 Got bored so slapped together some python for [Wordle](https://www.nytimes.com/games/wordle/index.html) solver. It'll also pull a definition of the word of the day too along with synonyms.
