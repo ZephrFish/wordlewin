@@ -1,16 +1,21 @@
 # wordlewin
 
 <!-- WORDLE:START -->
-## Today's Word (2026-11-12)
+## Today's Word (2026-11-13)
 
-**KARAT** (Wordle #1972, edited by Tracy Bennett)
+**MOXIE** (Wordle #1973, edited by Tracy Bennett)
 
 ```
   noun
-    • A unit of fineness or concentration of gold equalling 1/24 part of gold in an alloy.
+    • Nerve, spunk, strength of character.
+      Synonyms: backbone, determination, fortitude, spirit
+    • Verve.
+      Synonyms: energy, initiative, pep, vigor
+    • Wit, smarts, skill.
+      Synonyms: know-how
 ```
 
-_Last updated automatically on 2026-11-12._
+_Last updated automatically on 2026-11-13._
 <!-- WORDLE:END -->
 
 Got bored so slapped together some python for [Wordle](https://www.nytimes.com/games/wordle/index.html) solver. It'll also pull a definition of the word of the day too along with synonyms.
