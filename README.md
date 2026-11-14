@@ -1,21 +1,21 @@
 # wordlewin
 
 <!-- WORDLE:START -->
-## Today's Word (2026-11-13)
+## Today's Word (2026-11-14)
 
-**MOXIE** (Wordle #1973, edited by Tracy Bennett)
+**RANDY** (Wordle #1974, edited by Tracy Bennett)
 
 ```
   noun
-    • Nerve, spunk, strength of character.
-      Synonyms: backbone, determination, fortitude, spirit
-    • Verve.
-      Synonyms: energy, initiative, pep, vigor
-    • Wit, smarts, skill.
-      Synonyms: know-how
+    • Impudent beggar
+    • Boisterous, coarse, loose woman
+    • Virago
+  adjective
+    • Sexually aroused; full of sexual lust.
+    • Rude or coarse in manner.
 ```
 
-_Last updated automatically on 2026-11-13._
+_Last updated automatically on 2026-11-14._
 <!-- WORDLE:END -->
 
 Got bored so slapped together some python for [Wordle](https://www.nytimes.com/games/wordle/index.html) solver. It'll also pull a definition of the word of the day too along with synonyms.
