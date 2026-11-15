@@ -1,21 +1,20 @@
 # wordlewin
 
 <!-- WORDLE:START -->
-## Today's Word (2026-11-14)
+## Today's Word (2026-11-15)
 
-**RANDY** (Wordle #1974, edited by Tracy Bennett)
+**SNARK** (Wordle #1975, edited by Tracy Bennett)
 
 ```
   noun
-    • Impudent beggar
-    • Boisterous, coarse, loose woman
-    • Virago
-  adjective
-    • Sexually aroused; full of sexual lust.
-    • Rude or coarse in manner.
+    • Snide remarks.
+      Synonyms: sarcasm
+  verb
+    • To express oneself in a snarky fashion.
+    • To snort.
 ```
 
-_Last updated automatically on 2026-11-14._
+_Last updated automatically on 2026-11-15._
 <!-- WORDLE:END -->
 
 Got bored so slapped together some python for [Wordle](https://www.nytimes.com/games/wordle/index.html) solver. It'll also pull a definition of the word of the day too along with synonyms.
