@@ -1,20 +1,20 @@
 # wordlewin
 
 <!-- WORDLE:START -->
-## Today's Word (2026-11-15)
+## Today's Word (2026-11-16)
 
-**SNARK** (Wordle #1975, edited by Tracy Bennett)
+**DRAWL** (Wordle #1976, edited by Tracy Bennett)
 
 ```
   noun
-    • Snide remarks.
-      Synonyms: sarcasm
+    • A way of speaking slowly while lengthening vowel sounds and running words together. Characteristic of some southern US accents, as well as Scots.
   verb
-    • To express oneself in a snarky fashion.
-    • To snort.
+    • To drag on slowly and heavily; to while or dawdle away time indolently.
+    • To utter or pronounce in a dull, spiritless tone, as if by dragging out the utterance.
+    • To move slowly and heavily; move in a dull, slow, lazy manner.
 ```
 
-_Last updated automatically on 2026-11-15._
+_Last updated automatically on 2026-11-16._
 <!-- WORDLE:END -->
 
 Got bored so slapped together some python for [Wordle](https://www.nytimes.com/games/wordle/index.html) solver. It'll also pull a definition of the word of the day too along with synonyms.
