@@ -1,20 +1,30 @@
 # wordlewin
 
 <!-- WORDLE:START -->
-## Today's Word (2026-11-16)
+## Today's Word (2026-11-17)
 
-**DRAWL** (Wordle #1976, edited by Tracy Bennett)
+**ROAST** (Wordle #1977, edited by Tracy Bennett)
 
 ```
   noun
-    • A way of speaking slowly while lengthening vowel sounds and running words together. Characteristic of some southern US accents, as well as Scots.
+    • A cut of meat suited to roasting
+    • A meal consisting of roast foods.
+    • The degree to which something, especially coffee, is roasted.
+      Example: "Dark roast means that the coffee bean has been roasted to a higher temperature and for a longer period of time than in light roast."
   verb
-    • To drag on slowly and heavily; to while or dawdle away time indolently.
-    • To utter or pronounce in a dull, spiritless tone, as if by dragging out the utterance.
-    • To move slowly and heavily; move in a dull, slow, lazy manner.
+    • To cook food by heating in an oven or over a fire without covering, resulting in a crisp, possibly even slightly charred appearance.
+      Example: "to roast meat on a spit"
+    • To cook by surrounding with hot embers, ashes, sand, etc.
+      Example: "to roast a potato in ashes"
+    • To process by drying through exposure to sun or artificial heat
+      Example: "Coffee beans need roasting before use."
+  adjective
+    • Having been cooked by roasting.
+      Synonyms: roasted
+    • Subjected to roasting, bantered, severely criticized.
 ```
 
-_Last updated automatically on 2026-11-16._
+_Last updated automatically on 2026-11-17._
 <!-- WORDLE:END -->
 
 Got bored so slapped together some python for [Wordle](https://www.nytimes.com/games/wordle/index.html) solver. It'll also pull a definition of the word of the day too along with synonyms.
