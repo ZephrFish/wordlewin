@@ -1,19 +1,22 @@
 # wordlewin
 
 <!-- WORDLE:START -->
-## Today's Word (2026-11-18)
+## Today's Word (2026-11-19)
 
-**BLURT** (Wordle #1978, edited by Tracy Bennett)
+**CLOUT** (Wordle #1979, edited by Tracy Bennett)
 
 ```
   noun
-    • An abrupt outburst.
+    • Influence or effectiveness, especially political.
+    • A blow with the hand.
+    • A home run.
   verb
-    • To utter suddenly and unadvisedly; to speak quickly or without thought; to divulge inconsiderately — commonly with out.
-      Example: "Please think about your reply and don't just blurt out the first thing that comes to mind."
+    • To hit, especially with the fist.
+    • To cover with cloth, leather, or other material; to bandage, patch, or mend with a clout.
+    • To stud with nails, as a timber, or a boot sole.
 ```
 
-_Last updated automatically on 2026-11-18._
+_Last updated automatically on 2026-11-19._
 <!-- WORDLE:END -->
 
 Got bored so slapped together some python for [Wordle](https://www.nytimes.com/games/wordle/index.html) solver. It'll also pull a definition of the word of the day too along with synonyms.
