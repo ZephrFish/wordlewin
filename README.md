@@ -1,22 +1,21 @@
 # wordlewin
 
 <!-- WORDLE:START -->
-## Today's Word (2026-11-19)
+## Today's Word (2026-11-20)
 
-**CLOUT** (Wordle #1979, edited by Tracy Bennett)
+**AROSE** (Wordle #1980, edited by Tracy Bennett)
 
 ```
-  noun
-    • Influence or effectiveness, especially political.
-    • A blow with the hand.
-    • A home run.
   verb
-    • To hit, especially with the fist.
-    • To cover with cloth, leather, or other material; to bandage, patch, or mend with a clout.
-    • To stud with nails, as a timber, or a boot sole.
+    • To come up from a lower to a higher position.
+      Example: "to arise from a kneeling posture"
+    • To come up from one's bed or place of repose; to get up.
+      Example: "He arose early in the morning."
+    • To spring up; to come into action, being, or notice; to become operative, sensible, or visible; to begin to act a part; to present itself.
+      Example: "A cloud arose and covered the sun."
 ```
 
-_Last updated automatically on 2026-11-19._
+_Last updated automatically on 2026-11-20._
 <!-- WORDLE:END -->
 
 Got bored so slapped together some python for [Wordle](https://www.nytimes.com/games/wordle/index.html) solver. It'll also pull a definition of the word of the day too along with synonyms.
