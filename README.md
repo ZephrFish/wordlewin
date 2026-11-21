@@ -1,21 +1,18 @@
 # wordlewin
 
 <!-- WORDLE:START -->
-## Today's Word (2026-11-20)
+## Today's Word (2026-11-21)
 
-**AROSE** (Wordle #1980, edited by Tracy Bennett)
+**STENT** (Wordle #1981, edited by Tracy Bennett)
 
 ```
+  noun
+    • A slender tube inserted into a blood vessel, a ureter or the oesophagus in order to provide support and to prevent disease-induced closure.
   verb
-    • To come up from a lower to a higher position.
-      Example: "to arise from a kneeling posture"
-    • To come up from one's bed or place of repose; to get up.
-      Example: "He arose early in the morning."
-    • To spring up; to come into action, being, or notice; to become operative, sensible, or visible; to begin to act a part; to present itself.
-      Example: "A cloud arose and covered the sun."
+    • To insert a stent or tube into a blood vessel.
 ```
 
-_Last updated automatically on 2026-11-20._
+_Last updated automatically on 2026-11-21._
 <!-- WORDLE:END -->
 
 Got bored so slapped together some python for [Wordle](https://www.nytimes.com/games/wordle/index.html) solver. It'll also pull a definition of the word of the day too along with synonyms.
