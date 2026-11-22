@@ -1,18 +1,20 @@
 # wordlewin
 
 <!-- WORDLE:START -->
-## Today's Word (2026-11-21)
+## Today's Word (2026-11-22)
 
-**STENT** (Wordle #1981, edited by Tracy Bennett)
+**UPEND** (Wordle #1982, edited by Tracy Bennett)
 
 ```
-  noun
-    • A slender tube inserted into a blood vessel, a ureter or the oesophagus in order to provide support and to prevent disease-induced closure.
   verb
-    • To insert a stent or tube into a blood vessel.
+    • To end up; to set on end.
+    • To tip or turn over.
+      Example: "When he upended the bottle of water over his sleeping sister, the lid popped off and surprised them both."
+    • To destroy, invalidate, overthrow, or defeat.
+      Example: "The scientific evidence upended the popular myth."
 ```
 
-_Last updated automatically on 2026-11-21._
+_Last updated automatically on 2026-11-22._
 <!-- WORDLE:END -->
 
 Got bored so slapped together some python for [Wordle](https://www.nytimes.com/games/wordle/index.html) solver. It'll also pull a definition of the word of the day too along with synonyms.
