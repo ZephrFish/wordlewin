@@ -1,20 +1,21 @@
 # wordlewin
 
 <!-- WORDLE:START -->
-## Today's Word (2026-11-22)
+## Today's Word (2026-11-23)
 
-**UPEND** (Wordle #1982, edited by Tracy Bennett)
+**FILTH** (Wordle #1983, edited by Tracy Bennett)
 
 ```
-  verb
-    • To end up; to set on end.
-    • To tip or turn over.
-      Example: "When he upended the bottle of water over his sleeping sister, the lid popped off and surprised them both."
-    • To destroy, invalidate, overthrow, or defeat.
-      Example: "The scientific evidence upended the popular myth."
+  noun
+    • Dirt; foul matter; that which soils or defiles.
+      Example: "Before we start cooking we need to clean up the filth in this kitchen."
+    • Smut; that which sullies or defiles the moral character; corruption; pollution.
+      Example: "He spends all his time watching filth on pornographic websites."
+    • (with definite article) The police.
+      Example: "We were in the middle of stashing the money when the filth arrived."
 ```
 
-_Last updated automatically on 2026-11-22._
+_Last updated automatically on 2026-11-23._
 <!-- WORDLE:END -->
 
 Got bored so slapped together some python for [Wordle](https://www.nytimes.com/games/wordle/index.html) solver. It'll also pull a definition of the word of the day too along with synonyms.
