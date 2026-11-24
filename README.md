@@ -1,21 +1,21 @@
 # wordlewin
 
 <!-- WORDLE:START -->
-## Today's Word (2026-11-23)
+## Today's Word (2026-11-24)
 
-**FILTH** (Wordle #1983, edited by Tracy Bennett)
+**SNEER** (Wordle #1984, edited by Tracy Bennett)
 
 ```
   noun
-    • Dirt; foul matter; that which soils or defiles.
-      Example: "Before we start cooking we need to clean up the filth in this kitchen."
-    • Smut; that which sullies or defiles the moral character; corruption; pollution.
-      Example: "He spends all his time watching filth on pornographic websites."
-    • (with definite article) The police.
-      Example: "We were in the middle of stashing the money when the filth arrived."
+    • A facial expression where one slightly raises one corner of the upper lip, generally indicating scorn.
+    • A display of contempt; scorn.
+  verb
+    • To raise a corner of the upper lip slightly, especially in scorn
+    • To utter with a grimace or contemptuous expression; to say sneeringly.
+      Example: ""Now here's someone who should attend privilege workshops," sneered she."
 ```
 
-_Last updated automatically on 2026-11-23._
+_Last updated automatically on 2026-11-24._
 <!-- WORDLE:END -->
 
 Got bored so slapped together some python for [Wordle](https://www.nytimes.com/games/wordle/index.html) solver. It'll also pull a definition of the word of the day too along with synonyms.
