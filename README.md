@@ -1,21 +1,21 @@
 # wordlewin
 
 <!-- WORDLE:START -->
-## Today's Word (2026-11-24)
+## Today's Word (2026-11-25)
 
-**SNEER** (Wordle #1984, edited by Tracy Bennett)
+**SPICY** (Wordle #1985, edited by Tracy Bennett)
 
 ```
-  noun
-    • A facial expression where one slightly raises one corner of the upper lip, generally indicating scorn.
-    • A display of contempt; scorn.
-  verb
-    • To raise a corner of the upper lip slightly, especially in scorn
-    • To utter with a grimace or contemptuous expression; to say sneeringly.
-      Example: ""Now here's someone who should attend privilege workshops," sneered she."
+  adjective
+    • Of, pertaining to, or containing spice.
+      Example: "He prepared a spicy casserole."
+    • (of flavors) Provoking a burning sensation due to the presence of chilis or similar hot spices
+      Example: "This curry is too spicy for me. I can't eat it."
+    • (of flavors or odors) Tangy, zesty, or pungent.
+      Example: "She breathed in the strong, spicy aroma."
 ```
 
-_Last updated automatically on 2026-11-24._
+_Last updated automatically on 2026-11-25._
 <!-- WORDLE:END -->
 
 Got bored so slapped together some python for [Wordle](https://www.nytimes.com/games/wordle/index.html) solver. It'll also pull a definition of the word of the day too along with synonyms.
