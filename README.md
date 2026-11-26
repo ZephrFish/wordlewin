@@ -1,21 +1,23 @@
 # wordlewin
 
 <!-- WORDLE:START -->
-## Today's Word (2026-11-25)
+## Today's Word (2026-11-26)
 
-**SPICY** (Wordle #1985, edited by Tracy Bennett)
+**TENSE** (Wordle #1986, edited by Tracy Bennett)
 
 ```
-  adjective
-    • Of, pertaining to, or containing spice.
-      Example: "He prepared a spicy casserole."
-    • (of flavors) Provoking a burning sensation due to the presence of chilis or similar hot spices
-      Example: "This curry is too spicy for me. I can't eat it."
-    • (of flavors or odors) Tangy, zesty, or pungent.
-      Example: "She breathed in the strong, spicy aroma."
+  noun
+    • (grammar) Any of the forms of a verb which distinguish when an action or state of being occurs or exists.
+    • (grammar) An inflected form of a verb that indicates tense.
+      Example: "English only has a present tense and a past tense; it has no future tense."
+    • The property of indicating the point in time at which an action or state of being occurs or exists.
+      Example: "Dyirbal verbs are not inflected for tense."
+  verb
+    • (grammar) To apply a tense to.
+      Example: "tensing a verb"
 ```
 
-_Last updated automatically on 2026-11-25._
+_Last updated automatically on 2026-11-26._
 <!-- WORDLE:END -->
 
 Got bored so slapped together some python for [Wordle](https://www.nytimes.com/games/wordle/index.html) solver. It'll also pull a definition of the word of the day too along with synonyms.
