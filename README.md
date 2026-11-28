@@ -1,23 +1,18 @@
 # wordlewin
 
 <!-- WORDLE:START -->
-## Today's Word (2026-11-27)
+## Today's Word (2026-11-28)
 
-**SHEAF** (Wordle #1987, edited by Tracy Bennett)
+**WOOZY** (Wordle #1988, edited by Tracy Bennett)
 
 ```
-  noun
-    • A quantity of the stalks and ears of wheat, rye, or other grain, bound together; a bundle of grain or straw.
-    • Any collection of things bound together; a bundle.
-      Example: "a sheaf of paper"
-    • A bundle of arrows sufficient to fill a quiver, or the allowance of each archer.
-  verb
-    • To gather and bind into a sheaf; to make into sheaves
-      Example: "to sheaf wheat"
-    • To collect and bind cut grain, or the like; to make sheaves.
+  adjective
+    • Queasy, dizzy, or disoriented
+      Example: "I got off the rollercoaster feeling a bit woozy."
+    • Intoxicated by drink or drugs
 ```
 
-_Last updated automatically on 2026-11-27._
+_Last updated automatically on 2026-11-28._
 <!-- WORDLE:END -->
 
 Got bored so slapped together some python for [Wordle](https://www.nytimes.com/games/wordle/index.html) solver. It'll also pull a definition of the word of the day too along with synonyms.
